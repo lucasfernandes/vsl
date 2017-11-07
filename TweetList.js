@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { StyleSheet } from 'react-native';
 import { graphql } from 'react-apollo';
 import gql  from 'graphql-tag';
 
@@ -12,9 +13,9 @@ class TweetList extends Component{
   render(){
     if(this.props.tweets.loading)
       return(
-         <Container>
+         <Container style={styles.loadingContainer}>
            <Content>
-             <Spinner />
+             <Spinner color="#000" />
              <Text>Carregando tweets</Text>
            </Content>
          </Container> 
@@ -85,3 +86,11 @@ export default graphql(TWEETS_QUERY,
     })
   })
 })(TweetList);
+
+const styles = StyleSheet.create({
+  loadingContainer: {
+    flex: 1,
+    paddingVertical: 50,
+    alignItems: 'center',
+  }
+})
